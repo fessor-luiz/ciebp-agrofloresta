@@ -1,15 +1,51 @@
 const path = 'src/img/cartas-agrofloresta/'
+const pathArvoreReal = 'src/img/arvores-agrofloresta/'
+
+const body = document.getElementById('cartas')
+const input = document.getElementById('search')
+const modalTitle = document.getElementById('modalTitleId')
+
+
+input.addEventListener("input", ()=>{
+    for (let j = 0; j < body.childElementCount; j++) {
+        body.firstChild.remove()
+    }
+
+    const container = document.createElement('div')
+    container.className = "container"
+    let arvoresSelecionadas = arvores.filter(a => a.nome.toLowerCase().startsWith(input.value.toLocaleLowerCase()) )
+
+    if(input.value === '') return
+    for (let i = 0; i < arvoresSelecionadas.length; i++) {
+        const imgCard = document.createElement('img')
+        const imgCardReal = document.createElement('img')
+        imgCard.src = arvoresSelecionadas[i].card
+        imgCard.className = 'object-fit-contains m-4'
+        imgCard.alt = `${arvoresSelecionadas[i].nome.toLocaleLowerCase()}`
+        imgCard.height = '640'
+        imgCard.width = '500'
+        imgCardReal.src = arvoresSelecionadas[i].imgReal
+        imgCardReal.className = 'object-fit-cover'
+        imgCardReal.alt = `${arvoresSelecionadas[i].nome.toLocaleLowerCase()}`
+        imgCardReal.height = '640'
+        imgCardReal.width = '500'
+        container.append(imgCard)   
+        container.append(imgCardReal)   
+    }
+    body.append(container)
+})
+
 
 const arvores = [{
     id: 1,
     nome: 'Açoita-Cavalo-Miúdo',
     card: path +'açoita-cavalo-miudo.png',
-    imgReal: ''
+    imgReal: pathArvoreReal + 'açoita-cavalo-miudo.jpg'
 }, {
     id: 2,
     nome: 'Andiroba',
     card: path + 'andiroba.png',
-    imgReal: ''
+    imgReal: pathArvoreReal + 'andiroba.jpg'
 },{
     id: 3,
     nome: 'Angico-Branco',
@@ -113,32 +149,4 @@ const arvores = [{
     imgReal: ''
 },
 ]
-
-const body = document.getElementById('cartas')
-const input = document.getElementById('search')
-
-input.addEventListener("input", ()=>{
-    for (let j = 0; j < body.childElementCount; j++) {
-        body.firstChild.remove()
-        
-    }
-
-
-    const container = document.createElement('div')
-    container.className = "container"
-    let arvoresSelecionadas = arvores.filter(a => a.nome.toLowerCase().startsWith(input.value.toLocaleLowerCase()) )
-
-    if(input.value === '') return
-    for (let i = 0; i < arvoresSelecionadas.length; i++) {
-        
-        const imgCard = document.createElement('img')
-        imgCard.src = arvoresSelecionadas[i].card
-        imgCard.className = 'img-thumbnail'
-        imgCard.alt = `${arvoresSelecionadas[i].nome.toLocaleLowerCase()}`
-        imgCard.width = '200'
-        container.append(imgCard)
-
-    }
-    body.append(container)
-})
 
