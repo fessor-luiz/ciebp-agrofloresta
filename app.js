@@ -117,25 +117,6 @@ const arvores = [{
 const body = document.getElementById('cartas')
 const input = document.getElementById('search')
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    
-    // criar card para cada carta
-    // const container = document.createElement('div')
-    // container.className = "container"
-
-    // for (let i = 0; i < arvores.length; i++) {
-    //     const imgCard = document.createElement('img')
-    //     imgCard.src = arvores[i].card
-    //     imgCard.className = 'img-thumbnail'
-    //     imgCard.alt = `${arvores[i].nome.toLocaleLowerCase()}`
-    //     imgCard.width = '200'
-    //     container.append(imgCard)
-
-    // }
-    // body.append(container)
-})
-
 input.addEventListener("input", ()=>{
     for (let j = 0; j < body.childElementCount; j++) {
         body.firstChild.remove()
