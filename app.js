@@ -1,48 +1,38 @@
 const path = 'src/img/cartas-agrofloresta/'
 const pathArvoreReal = 'src/img/arvores-agrofloresta/'
 
-const body = document.getElementById('cartas')
+const cartas = document.getElementById('cartas')
 const input = document.getElementById('search')
 const modalTitle = document.getElementById('modalTitleId')
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    let n = Math.ceil(Math.random(0, 1) * 21)
+    cartas.append(criarImagensCartas(arvores, n))
+    cartas.append(criarImagensArvores(arvores, n))
+})
+
 input.addEventListener("input", () => {
-    for (let j = 0; j < body.childElementCount; j++) {
-        body.firstChild.remove()
-    }
+    cartas.innerHTML = ''
 
     const container = document.createElement('div')
     container.className = "container"
+
     let arvoresSelecionadas = arvores.filter(a => a.nome.toLowerCase().includes(input.value.toLocaleLowerCase()))
 
     if (input.value === '') return
+   
     for (let i = 0; i < arvoresSelecionadas.length; i++) {
-        const imgCard = document.createElement('img')
-        const imgCardReal = document.createElement('img')
-
-        imgCard.src = arvoresSelecionadas[i].card
-        imgCard.className = 'object-fit-contains m-2'
-        imgCard.alt = `${arvoresSelecionadas[i].nome.toLocaleLowerCase()}`
-        imgCard.height = '640'
-        imgCard.width = '500'
-        container.append(imgCard)
-
-        if (arvoresSelecionadas[i].imgReal === '') continue
-        imgCardReal.src = arvoresSelecionadas[i].imgReal
-        imgCardReal.className = 'object-fit-cover m-2'
-        imgCardReal.alt = `${arvoresSelecionadas[i].nome.toLocaleLowerCase()}`
-        imgCardReal.height = '640'
-        imgCardReal.width = '500'
-        container.append(imgCardReal)
-
+      let imgCard = criarImagensCartas(arvoresSelecionadas, i, cartas)
+       cartas.append(imgCard)
+       let arvore = criarImagensArvores(arvoresSelecionadas, i,  imgCard)
+       cartas.append(arvore)
     }
-    body.append(container)
 })
-
 
 const arvores = [{
     id: 1,
-    nome: 'Açoita-Cavalo-Miúdo',
+    nome: 'Açoita-Cavalo-Miúdo açoita cavalo miudo acoita cavalo miudo',
     card: path + 'açoita-cavalo-miudo.png',
     imgReal: pathArvoreReal + 'açoita-cavalo-miudo.jpg'
 }, {
@@ -52,28 +42,28 @@ const arvores = [{
     imgReal: pathArvoreReal + 'andiroba.jpg'
 }, {
     id: 3,
-    nome: 'Angico-Branco',
+    nome: 'Angico-Branco angico branco',
     card: path + 'angico-branco' + '.png',
     imgReal: pathArvoreReal + 'angico_branco.jpg'
 }, {
     id: 4,
-    nome: 'Araucária',
+    nome: 'Araucária araucaria',
     card: path + 'araucaria' + '.png',
     imgReal: pathArvoreReal + 'araucária.jpg'
 },
 {
     id: 5,
-    nome: 'Babosa-Branca',
+    nome: 'Babosa-Branca babosa branca',
     card: path + 'babosa-branca' + '.png',
     imgReal: pathArvoreReal + 'babosa-branca.jpg'
 }, {
     id: 6,
-    nome: 'Cambucá',
+    nome: 'Cambucá cambuca',
     card: path + 'cambuca' + '.png',
     imgReal: pathArvoreReal + 'cambucá.png'
 }, {
     id: 7,
-    nome: 'Canela-Louro',
+    nome: 'Canela-Louro canela louro',
     card: path + 'canela-louro' + '.png',
     imgReal: pathArvoreReal + 'canela-louro.jpg'
 }, {
@@ -103,22 +93,22 @@ const arvores = [{
     imgReal: pathArvoreReal + 'imbuia.jpg'
 }, {
     id: 13,
-    nome: 'Ipê-Amarelo',
+    nome: 'Ipê-Amarelo ipe amarelo ipe-amarelo',
     card: path + 'ipe-amarelo' + '.png',
     imgReal: pathArvoreReal + 'ipê-amarelo.jpg'
 }, {
     id: 14,
-    nome: 'Ipê-Branco',
+    nome: 'Ipê-Branco ipe branco ipe-branco',
     card: path + 'ipe-branco' + '.png',
     imgReal: pathArvoreReal + 'ipê-branco.jpg'
 }, {
     id: 15,
-    nome: 'Jacarandá-de-Minas',
+    nome: 'Jacarandá-de-Minas jacaranda de minas jacaranda-de-minas jacarandá de minas',
     card: path + 'jacaranda-de-minas' + '.png',
     imgReal: pathArvoreReal + 'jacaranda-de-minas.png'
 }, {
     id: 16,
-    nome: 'Jacarandá-Paulista Jacaranda-Paulista',
+    nome: 'Jacarandá-Paulista Jacaranda-Paulista jacaranda paulista jacarandá paulista',
     card: path + 'jacaranda-paulista' + '.png',
     imgReal: pathArvoreReal + 'jacaranda-paulista.jpg'
 }, {
@@ -153,4 +143,25 @@ const arvores = [{
     imgReal: pathArvoreReal + 'sibipiruna.jpg'
 },
 ]
+
+function criarImagensCartas(arvoresSelecionadas, i) {
+    const imgCard = document.createElement('img')
+    imgCard.src = arvoresSelecionadas[i].card
+    imgCard.className = 'object-fit-contains m-2 mt-4'
+    imgCard.alt = `${arvoresSelecionadas[i].nome.toLowerCase()}`
+    imgCard.height = 640
+    imgCard.width = 500
+   return imgCard
+}
+
+function criarImagensArvores(arvoresSelecionadas, i) {
+    const imgCardReal = document.createElement('img')
+    if (arvoresSelecionadas[i].imgReal === '') return
+    imgCardReal.src = arvoresSelecionadas[i].imgReal
+    imgCardReal.className = 'object-fit-cover m-2 mt-4'
+    imgCardReal.alt = `${arvoresSelecionadas[i].nome.toLowerCase()}`
+    imgCardReal.height = 640
+    imgCardReal.width = 500
+    return imgCardReal
+}
 

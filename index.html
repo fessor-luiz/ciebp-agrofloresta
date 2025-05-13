@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,12 +15,18 @@
   <body>
     <div class="container text-center">
       <div>
-        <h1 class="lead display-3">Árvore</h1>
-        <input type="text" id="search" placeholder="Digite o nome da árvore" />
+        <h2 class="lead display-6">Agrofloresta</h2>
+        <input 
+          type="text"
+          class="search mb-2"
+          id="search"
+          placeholder="Digite o nome da árvore"
+        />
       </div>
-      <div id="cartas" class=""></div>
+      <div id="cartas" class="">
+      </div>
     </div>
-
+    
     <script src="app.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
@@ -27,4 +34,14 @@
       crossorigin="anonymous"
     ></script>
   </body>
+  <footer class="py-3 my-4 text-center">
+    <p class="text-center text-body-secondary border-top border-dark">
+      <h2 class="lead">Programação Descomplicada</h2>
+      © 2025 CIEBP Ángelo Mendes -
+      <a href="https://github.com/fessor-luiz/ciebp-agrofloresta"
+        >Profesosr Luiz</a
+      >
+      & <a href="https://github.com/profgstv">Gustavo</a>
+    </p>
+  </footer>
 </html>
